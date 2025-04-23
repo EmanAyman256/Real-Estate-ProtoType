@@ -1,0 +1,4 @@
+ID,building_ID,unitNumber,type,status,price
+101,1,"A-101","Apartment","Available",1200.00
+102,1,"A-102","Apartment","Occupied",1300.00
+103,2,"B-201","Office","Available",2000.00
