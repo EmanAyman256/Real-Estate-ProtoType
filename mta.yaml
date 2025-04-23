@@ -2,7 +2,17 @@ ID: Marasem-UI
 _schema-version: '3.1'
 version: 0.0.1
 
-# modules:
+modules:
+- name: MarasemPrototype
+  type: html5
+  path: app/realetateui
+  build-parameters:
+    builder: custom
+    commands:
+      - npm install
+      - ui5 build --all
+    supported-platforms: []
+
 #   - name: srv
 #     type: nodejs
 #     path: srv

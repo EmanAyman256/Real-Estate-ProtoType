@@ -1,3 +1,3 @@
-ID,name,address,description
-1,"Sunset Towers","123 Ocean Ave, Miami, FL","Luxury residential building with ocean views"
-2,"City Plaza","456 Downtown Rd, Miami, FL","Modern commercial and residential complex"
+ID,name,location
+1a2b3c4d,Building A,Downtown
+2b3c4d5e,Building B,Uptown

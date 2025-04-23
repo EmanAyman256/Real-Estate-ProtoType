@@ -110,33 +110,6 @@ sap.ui.define([
             } else {
                 MessageToast.show("No unit info at this point.");
             }
-        },
-        onInit: function () {
-            this.getView().getModel().read("/Building");
-          },
-          
-          onBuildingSelect: function (oEvent) {
-            const selectedContext = oEvent.getParameter("listItem").getBindingContext();
-            const buildingID = selectedContext.getProperty("ID");
-          
-            const oModel = this.getView().getModel();
-            oModel.read(`/Building('${buildingID}')/units`, {
-              success: (data) => {
-                const unitModel = new sap.ui.model.json.JSONModel({ SelectedBuildingUnits: data.value });
-                this.getView().setModel(unitModel);
-              }
-            });
-          },
-          
-          onUnitSelect: function (oEvent) {
-            const unit = oEvent.getParameter("listItem").getBindingContext().getObject();
-            sap.m.ActionSheet({
-             title:` Actions for ${unit.name}`,
-              buttons: [
-                new sap.m.Button({ text: "Create Reservation", press: () => {/* logic */} }),
-                new sap.m.Button({ text: "Go to Payment", press: () => {/* logic */} })
-              ]
-            }).openBy(oEvent.getParameter("listItem"));
-          }
+        }
     });
 });
