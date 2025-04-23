@@ -1,0 +1,43 @@
+ID: Marasem-UI
+_schema-version: '3.1'
+version: 0.0.1
+
+# modules:
+#   - name: srv
+#     type: nodejs
+#     path: srv
+#     # requires:
+#     #   - name: my-cap-destination
+#     provides:
+#       - name: srv_api
+#         properties:
+#           url: ${default-url}
+
+#   - name: realetateui
+#     type: html5
+#     path: app/realetateui
+#     build-parameters:
+#       builder: custom
+#       commands:
+#         - npm install
+#         - ui5 build --all
+#       supported-platforms: []
+
+resources:
+  # - name: my-cap-destination
+  #   type: org.cloudfoundry.managed-service
+  #   parameters:
+  #     service: destination
+  #     service-plan: lite
+
+  - name: html5-app-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+
+  - name: html5-app-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime

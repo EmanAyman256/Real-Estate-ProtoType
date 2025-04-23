@@ -5,6 +5,13 @@
   "repository": "<Add your repository here>",
   "license": "UNLICENSED",
   "private": true,
+  "scripts": {
+    "start": "cds-serve",
+    "watch-realestateui": "cds watch --open realestateui/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-realetateui": "cds watch --open realetateui/webapp/index.html?sap-ui-xx-viewCache=false",
+    "build": "ui5 build --all"
+    },
   "cds": {
     "requires": {
       "db": {
@@ -21,14 +28,9 @@
     "express": "^4"
   },
   "devDependencies": {
+    "@cap-js/cds-types": "^0.9.0",
     "@cap-js/sqlite": "^1",
-    "@cap-js/cds-types": "^0.9.0"
-  },
-  "scripts": {
-    "start": "cds-serve",
-    "watch-realestateui": "cds watch --open realestateui/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-realetateui": "cds watch --open realetateui/webapp/index.html?sap-ui-xx-viewCache=false"
+    "@ui5/cli": "^4.0.14"
   },
   "sapux": [
     "app/realestateui"
