@@ -10,18 +10,121 @@
     <Page id="page" title="{i18n>title}">
     </Page>
 </mvc:View> -->
+<mvc:View
+    xmlns:unified="sap.ui.unified"
+    controllerName="realetateui.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+>
+    <Page
+        id="page"
+        title="Real Estate App"
+    >
+        <VBox
+            id="uploadVBox"
+            class="sapUiSmallMargin"
+        >
+            <items>
+                <Title
+                    id="uploadTitle"
+                    text="Upload Site Map Image"
+                    level="H2"
+                />
+                <unified:FileUploader
+                    id="fileUploader"
+                    name="siteMap"
+                    uploadOnChange="false"
+                    change="onFileChange"
+                    fileType="jpg,jpeg,png"
+                    buttonText="Choose Image"
+                    width="300px"
+                />
+                <Button
+                    id="uploadBtn"
+                    text="Upload Image"
+                    press="onUploadPress"
+                    class="sapUiSmallMarginTop"
+                />
+                <VBox
+                    id="img"
+                    height="100%"
+                    justifyContent="Center"
+                    alignItems="Center"
+                >
+                    <Image
+                        id="siteMapImage"
+                        visible="false"
+                    />
+                </VBox>
+            </items>
+        </VBox>
 
+        <VBox id="listBox">
+            <Text
+                id="building"
+                text="Buildings"
+                class="sapUiSmallMargin"
+            />
+            <List
+                id="buildingList"
+                items="{/Buildings}"
+                selectionChange="onBuildingSelect"
+                mode="SingleSelectMaster"
+            >
+                <StandardListItem
+                    id="buildingItem"
+                    title="{name}"
+                    description="{location}"
+                />
+            </List>
+            <!-- <List
+                id="buildingList"
+                items="{/Buildings}"
+                selectionChange="onBuildingSelect"
+                mode="SingleSelectMaster">
+                <StandardListItem
+                    id="buildingItem"
+                    title="{name}"
+                    description="{location}"
+                    type="Active" />
+            </List> -->
+        </VBox>
+    </Page>
+    <!-- <Page id="page" title="{i18n>title}">
+    <VBox id="uploadVBox" class="sapUiSmallMargin">
+      <items>
+        <Title id="uploadTitle" text="Upload Site Map Image" level="H2" />
+        <unified:FileUploader
+          id="fileUploader"
+          name="siteMap"
+          uploadOnChange="false"
+          change="onFileChange"
+          fileType="jpg,jpeg,png"
+          buttonText="Choose Image"
+          width="300px" />
+        <Button
+          id="uploadBtn"
+          text="Upload Image"
+          press="onUploadPress"
+          class="sapUiSmallMarginTop" />
+        <Image
+          id="siteMapImage"
+          width="100%"
+          visible="false" />
+      </items>
+    </VBox>
 
-
-<mvc:View xmlns:unified="sap.ui.unified"
-  controllerName="realetateui.controller.View1"
-  xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m"
-  displayBlock="true">
-
-  <VBox id="uploadVBox" class="sapUiSmallMargin">
+    <VBox id="listBox">
+      <Text id="building" text="Buildings" class="sapUiSmallMargin"/>
+      <List id="buildingList" items="{/Buildings}" selectionChange="onBuildingSelect" mode="SingleSelectMaster">
+        <StandardListItem id="buildingItem" title="{name}" description="{location}" />
+      </List>
+    </VBox>
+  </Page> -->
+    <!-- <VBox id="uploadVBox" class="sapUiSmallMargin">
     <items>
-      <Title id="uploadTitle" text="Upload Site Map Image" level="H2" />
+      <Title id="uploadTitle" text="Upload Compound Image" level="H2" />
 
       <unified:FileUploader
         id="fileUploader"
@@ -40,7 +143,24 @@
 
       <Image
         id="siteMapImage"
-        width="100%" visible="false"  />
+        width="50%" height="50%" visible="false"  />
     </items>
-  </VBox>
+  </VBox> -->
+    <!-- <VBox id="listBox">
+  <Text id="building" text="Buildings" class="sapUiSmallMargin"/>
+  <List id="buildingList" items="{/Building}" selectionChange="onBuildingSelect" mode="SingleSelectMaster">
+    <StandardListItem id="buildingItem" title="{name}" description="{location}" />
+  </List>
+
+  <Text id="unit" text="Units" class="sapUiSmallMargin"/>
+  <List id="unitList" items="{/SelectedBuildingUnits}" mode="SingleSelectMaster" selectionChange="onUnitSelect">
+    <StandardListItem
+    id="unitItem"
+      title="{name}"
+      type="Active"
+      description="{status}"
+      highlight="{= ${status} === 'reserved' ? 'Error' : 'Success' }"
+    />
+  </List>
+</VBox> -->
 </mvc:View>

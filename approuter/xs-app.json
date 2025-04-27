@@ -1,0 +1,19 @@
+{
+    "welcomeFile": "/index.html",
+    "authenticationMethod": "none",
+    "routes": [
+      {
+        "source": "^/app/(.*)",
+        "target": "$1",
+        "service": "html5-apps-repo-rt",
+        "authenticationType": "none"
+      },
+      {
+        "source": "^/srv/(.*)",
+        "target": "$1",
+        "destination": "srv-api",
+        "authenticationType": "none"
+      }
+    ]
+  }
+  

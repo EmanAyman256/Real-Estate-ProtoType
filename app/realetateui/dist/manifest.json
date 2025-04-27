@@ -15,15 +15,14 @@
       "version": "1.17.3",
       "toolsId": "e11302c7-77e6-437b-ab9b-5c566ece01f1"
     },
-    "dataSources": {
-      "mainService": {
-        "uri": "/odata/v4/real-estate/",
-        "type": "OData",
-        "settings": {
-          "annotations": [],
-          "odataVersion": "4.0"
+  "dataSources": {
+        "RealEstateService": {
+        "uri": "https://port4004-workspaces-ws-t7d85.ap21.trial.applicationstudio.cloud.sap/odata/v4/real-estate/",           
+         "type": "OData",
+            "settings": {
+                "odataVersion": "4.0"
+            }
         }
-      }
     }
   },
   "sap.ui": {
@@ -61,18 +60,20 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "realetateui.i18n.i18n"
+          "bundleName": "realetateui/webapp/i18n/i18n.properties",
+          "supportedLocales": ["en"],
+          "fallbackLocale": "en"
         }
       },
       "": {
-        "dataSource": "mainService",
-        "preload": true,
-        "settings": {
-          "operationMode": "Server",
-          "autoExpandSelect": true,
-          "earlyRequests": true
+            "dataSource": "RealEstateService",
+            "settings": {
+                "autoExpandSelect": true,
+                "synchronizationMode": "None",
+                "groupId": "$auto",        
+                "updateGroupId": "$auto"   
+            }
         }
-      }
     },
     "resources": {
       "css": [

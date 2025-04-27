@@ -1,52 +1,80 @@
-ID: Marasem-UI
-_schema-version: '3.1'
-version: 0.0.1
+_schema-version: "3.1"
+ID: real-estate
+version: 1.0.0
+description: "A CAP and UI5 project for real estate management."
+
+parameters:
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - cds build --production
 
 modules:
-- name: MarasemPrototype
-  type: html5
-  path: app/realetateui
-  build-parameters:
-    builder: custom
-    commands:
+  # CAP Service
+  - name: real-estate-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      memory: 256M
+      disk-quota: 256M
+      buildpack: nodejs_buildpack
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    build-parameters:
+      builder: npm
+      ignore:
+        - "node_modules/"
+
+  # UI5 App
+  - name: realetateui
+    type: html5
+    path: app/realetateui
+    parameters: 
+      memory: 128M
+      disk-quota: 256M
+    requires:
+    - name: srv-api
+      group: destinations
+      properties:
+        name: srv-api
+        url: ~{srv-url}
+        forwardAuthToken: true
+    build-parameters:
+      builder: custom
+      commands:
       - npm install
-      - ui5 build --all
-    supported-platforms: []
+      - npm run build
+      supported-platforms: []
+      build-result: dist
+  
 
-#   - name: srv
-#     type: nodejs
-#     path: srv
-#     # requires:
-#     #   - name: my-cap-destination
-#     provides:
-#       - name: srv_api
-#         properties:
-#           url: ${default-url}
+  # Approuter
+  - name: real-estate-approuter
+    type: nodejs
+    path: approuter
+    parameters:
+      memory: 128M
+      disk-quota: 256M
+    requires:
+    - name: real-estate-html5-repo-runtime
+    - name: srv-api
 
-#   - name: realetateui
-#     type: html5
-#     path: app/realetateui
-#     build-parameters:
-#       builder: custom
-#       commands:
-#         - npm install
-#         - ui5 build --all
-#       supported-platforms: []
 
 resources:
-  # - name: my-cap-destination
-  #   type: org.cloudfoundry.managed-service
-  #   parameters:
-  #     service: destination
-  #     service-plan: lite
-
-  - name: html5-app-host
+  # HTML5 Application Repository host
+  - name: real-estate-html5-repo-host
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
       service-plan: app-host
 
-  - name: html5-app-runtime
+  # HTML5 Application Repository runtime
+  - name: real-estate-html5-repo-runtime
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo

@@ -1,0 +1,12 @@
+
+applications:
+  - name: real-estate-approuter
+    path: approuter
+    memory: 128M
+    buildpacks:
+      - nodejs_buildpack
+    services:
+      - real-estate-html5-repo-runtime
+    commands: npm run start    
+   
+
